@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>StyleSphere - Master File-by-File Interview Q&A Document</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      line-height: 1.65;
+      color: #0f172a;
+      background: #ffffff;
+      margin: 0;
+      padding: 2.5rem;
+    }
+    
+    @media print {
+      body { padding: 0; }
+      .no-print { display: none !important; }
+      a { text-decoration: none; color: #0f172a; }
+      h1, h2, h3, h4 { page-break-after: avoid; }
+      .qa-box, table, pre { page-break-inside: avoid; }
+    }
+    
+    .print-header {
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: #ffffff;
+      padding: 1.25rem 2rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+    
+    .btn-download {
+      background: #2563eb;
+      color: #ffffff;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-weight: 700;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+    }
+    
+    h1 {
+      font-size: 2.4rem;
+      color: #0f172a;
+      border-bottom: 4px solid #2563eb;
+      padding-bottom: 0.6rem;
+      margin-top: 0;
+    }
+    
+    h2 {
+      font-size: 1.6rem;
+      color: #1e293b;
+      background: #f8fafc;
+      padding: 0.6rem 1rem;
+      border-left: 5px solid #2563eb;
+      border-radius: 4px;
+      margin-top: 2.5rem;
+    }
+    
+    h3 {
+      font-size: 1.2rem;
+      color: #2563eb;
+      margin-top: 1.75rem;
+    }
+    
+    .file-badge {
+      display: inline-block;
+      background: #eff6ff;
+      color: #2563eb;
+      font-family: monospace;
+      font-size: 0.9rem;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-weight: 700;
+      border: 1px solid #bfdbfe;
+    }
+    
+    .qa-box {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.25rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    }
+    
+    .question {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 0.5rem;
+    }
+    
+    .answer {
+      font-size: 0.95rem;
+      color: #334155;
+    }
+    
+    code {
+      background: #f1f5f9;
+      color: #2563eb;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 0.88em;
+    }
+    
+    pre {
+      background: #0f172a;
+      color: #f8fafc;
+      padding: 1.2rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 0.85rem;
+    }
+    
+    pre code { background: transparent; color: inherit; padding: 0; }
+    
+    table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; }
+    th, td { border: 1px solid #cbd5e1; padding: 0.75rem; font-size: 0.88rem; text-align: left; }
+    th { background: #f1f5f9; font-weight: 700; }
+  </style>
+</head>
+<body>
+
+  <div class="print-header no-print">
+    <div>
+      <div style="font-size: 1.2rem; font-weight: 800;">🎓 StyleSphere All-in-One Master Interview Q&A Document</div>
+      <div style="font-size: 0.88rem; opacity: 0.85; margin-top: 2px;">Comprehensive file-by-file questions & answers ready for PDF download.</div>
+    </div>
+    <button class="btn-download" onclick="window.print()">📥 Save All-in-One PDF</button>
+  </div>
+
+  <h1>🎓 StyleSphere - Master File-by-File Technical Interview & Concept Guide</h1>
+  
+  <p>This master document breaks down <strong>every important file in StyleSphere</strong> (Java Servlets, JDBC DAOs, Utilities, Database Scripts, React Contexts, API Services, Pages, and Components) with technical questions and model answers for college vivas and software engineering job interviews.</p>
+
+  <!-- SECTION 1: DATABASE FILES -->
+  <h2>1. Database Files & SQL Architecture</h2>
+
+  <div class="qa-box">
+    <div class="file-badge">database/schema.sql</div>
+    <div class="question">Q1: Explain the relational database design of StyleSphere. How many tables are present and how are they normalized?</div>
+    <div class="answer">
+      StyleSphere uses a <strong>15-table normalized schema</strong> in 3rd Normal Form (3NF). Key tables include <code>users</code>, <code>admin</code>, <code>addresses</code>, <code>brands</code>, <code>categories</code>, <code>subcategories</code>, <code>products</code>, <code>product_variants</code>, <code>cart</code>, <code>cart_items</code>, <code>wishlist</code>, <code>orders</code>, <code>order_items</code>, <code>payments</code>, and <code>reviews</code>. 3NF ensures no non-key attribute transitively depends on a primary key.
+    </div>
+  </div>
+
+  <div class="qa-box">
+    <div class="file-badge">database/schema.sql</div>
+    <div class="question">Q2: Why did you use Foreign Key constraints with ON DELETE CASCADE vs RESTRICT?</div>
+    <div class="answer">
+      - <code>ON DELETE CASCADE</code>: Used on dependent items like <code>cart_items</code> and <code>order_items</code> so that deleting a cart or order automatically cleans up associated items.<br>
+      - <code>ON DELETE RESTRICT</code>: Used on primary entities like <code>categories</code> and <code>brands</code> to prevent accidental deletion of a brand/category if active products reference it.
+    </div>
+  </div>
+
+  <div class="qa-box">
+    <div class="file-badge">database/schema.sql</div>
+    <div class="question">Q3: What indexes were created in schema.sql and why?</div>
+    <div class="answer">
+      Indexes were created on high-frequency search and filter columns: <code>idx_product_cat (category_id)</code>, <code>idx_product_brand (brand_id)</code>, <code>idx_product_price (price)</code>, and <code>idx_user_email (email)</code>. Indexes use B-Tree data structures to reduce query execution time from O(N) linear scan to O(log N).
+    </div>
+  </div>
+
+  <!-- SECTION 2: BACKEND UTILITY & FILTER FILES -->
+  <h2>2. Backend Utility & Security Filter Files</h2>
+
+  <div class="qa-box">
+    <div class="file-badge">backend/src/main/java/com/stylesphere/util/DBConnection.java</div>
+    <div class="question">Q4: Walk through DBConnection.java. How does static driver loading work?</div>
+    <div class="answer">
+      The static initializer block <code>static { Class.forName("com.mysql.cj.jdbc.Driver"); }</code> executes once when JVM loads the class, registering MySQL's JDBC Driver with Java's <code>DriverManager</code>. The static method <code>getConnection()</code> returns a new active SQL <code>Connection</code> instance.
+    </div>
+  </div>
+
+  <div class="qa-box">
+    <div class="file-badge">backend/src/main/java/com/stylesphere/filter/CorsFilter.java</div>
+    <div class="question">Q5: What is CORS and how does CorsFilter.java work?</div>
+    <div class="answer">
+      CORS (Cross-Origin Resource Sharing) is a browser security mechanism blocking cross-origin HTTP requests. <code>CorsFilter.java</code> uses <code>@WebFilter("/*")</code> to intercept all responses and append headers:
+      <code>Access-Control-Allow-Origin: *</code>, <code>Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS</code>. It also returns HTTP 200 OK for preflight <code>OPTIONS</code> requests.
+    </div>
+  </div>
+
+  <!-- SECTION 3: BACKEND DAO FILES -->
+  <h2>3. Backend Data Access Object (DAO) Files</h2>
+
+  <div class="qa-box">
+    <div class="file-badge">backend/src/main/java/com/stylesphere/dao/impl/ProductDAOImpl.java</div>
+    <div class="question">Q6: How does dynamic multi-criteria filtering work in ProductDAOImpl.java?</div>
+    <div class="answer">
+      <code>filterProducts(...)</code> builds a dynamic SQL query string using <code>StringBuilder</code>. It appends conditions (category, brand, min/max price, gender) conditionally based on non-null parameters. It orders results dynamically based on <code>sortBy</code> parameters (`price_asc`, `price_desc`, `rating`).
+    </div>
+  </div>
+
+  <div class="qa-box">
+    <div class="file-badge">backend/src/main/java/com/stylesphere/dao/impl/UserDAOImpl.java</div>
+    <div class="question">Q7: How is BCrypt password hashing implemented in UserDAOImpl.java?</div>
+    <div class="answer">
+      When registering a user, plain text passwords are encrypted via <code>BCrypt.hashpw(plainPassword, BCrypt.gensalt())</code>. During authentication, <code>BCrypt.checkpw(password, user.getPasswordHash())</code> compares the user's password input against the stored cryptographic hash.
+    </div>
+  </div>
+
+  <!-- SECTION 4: BACKEND SERVLET CONTROLLER FILES -->
+  <h2>4. Backend Servlet Controllers</h2>
+
+  <div class="qa-box">
+    <div class="file-badge">backend/src/main/java/com/stylesphere/servlet/ProductServlet.java</div>
+    <div class="question">Q8: How does ProductServlet.java process HTTP GET requests and serialize JSON responses?</div>
+    <div class="answer">
+      `ProductServlet` extends `HttpServlet` and overrides `doGet()`. It parses query parameters from `HttpServletRequest`, calls `productDAO.filterProducts(...)`, packs the product list into a Java Map, and uses Google Gson (`gson.toJson(responseData)`) to output UTF-8 application/json data via `HttpServletResponse.getWriter()`.
+    </div>
+  </div>
+
+  <div class="qa-box">
+    <div class="file-badge">backend/src/main/java/com/stylesphere/servlet/AuthServlet.java</div>
+    <div class="question">Q9: How does session management work in AuthServlet.java?</div>
+    <div class="answer">
+      Upon successful login authentication, `req.getSession(true)` initializes an HTTP Session object and attaches the authenticated user POJO: `session.setAttribute("user", u)`. On logout, `session.invalidate()` destroys the active session state.
+    </div>
+  </div>
+
+  <!-- SECTION 5: FRONTEND STATE & SERVICES -->
+  <h2>5. Frontend Services & State Management Files</h2>
+
+  <div class="qa-box">
+    <div class="file-badge">frontend/src/services/api.js</div>
+    <div class="question">Q10: What is the Dual-Layer Architecture in api.js?</div>
+    <div class="answer">
+      `api.js` uses standard `fetch()` to call Java Servlet backend REST endpoints (`http://localhost:8080/stylesphere-api/api/*`). If Tomcat/MySQL is offline, a `try-catch` block catches network errors and seamlessly falls back to filtering client-side data from `data/products.js`, ensuring zero downtime during frontend demonstrations.
+    </div>
+  </div>
+
+  <div class="qa-box">
+    <div class="file-badge">frontend/src/context/CartContext.jsx</div>
+    <div class="question">Q11: How does CartContext.jsx handle shopping cart state, coupon calculations, and persistence?</div>
+    <div class="answer">
+      - State: `cartItems` state array storing product ID, size, color, quantity, and price.<br>
+      - Persistence: `useEffect` saves `cartItems` to browser `localStorage` on change.<br>
+      - Coupon Calculation: Validating code `STUDENT10` applies a 10% discount (`subtotal * 0.10`). `total` is computed dynamically as `Math.max(0, subtotal - discountAmount + shippingFee)`.
+    </div>
+  </div>
+
+  <div class="qa-box">
+    <div class="file-badge">frontend/src/context/AuthContext.jsx</div>
+    <div class="question">Q12: How is Role-Based Access Control (RBAC) managed in AuthContext.jsx?</div>
+    <div class="answer">
+      `AuthContext` exposes `user` state and boolean getter `isAdmin: user?.role === 'ADMIN'`. If `isAdmin` is true, admin navigation controls and access to `AdminDashboard.jsx` are enabled.
+    </div>
+  </div>
+
+  <!-- SECTION 6: FRONTEND PAGES & COMPONENTS -->
+  <h2>6. Frontend Pages & Components</h2>
+
+  <div class="qa-box">
+    <div class="file-badge">frontend/src/pages/Products.jsx</div>
+    <div class="question">Q13: How does client-side filtering, sorting, and pagination work in Products.jsx?</div>
+    <div class="answer">
+      - Filtering: `useMemo` applies search keywords, category ID, brand ID, price slider, and gender tag against `PRODUCTS`.<br>
+      - Sorting: Array sort methods rearrange items by `price_low`, `price_high`, `rating`, or `newest`.<br>
+      - Pagination: `totalPages = Math.ceil(filteredProducts.length / itemsPerPage)`. Current page items are extracted via `filteredProducts.slice(start, start + itemsPerPage)`.
+    </div>
+  </div>
+
+  <div class="qa-box">
+    <div class="file-badge">frontend/src/pages/AdminDashboard.jsx</div>
+    <div class="question">Q14: Explain the Admin Product CRUD and Order status workflow in AdminDashboard.jsx.</div>
+    <div class="answer">
+      - Create: Modal form captures product name, brand, category, price, discount, and image URL, adding a new item to product state.<br>
+      - Read: Renders tabular list of inventory with filter search box.<br>
+      - Delete: Confirms action and removes item by ID.<br>
+      - Order Status Update: Dropdown allows updating order status from `PROCESSING` to `SHIPPED` or `DELIVERED`.
+    </div>
+  </div>
+
+  <div class="qa-box">
+    <div class="file-badge">frontend/src/pages/Checkout.jsx</div>
+    <div class="question">Q15: How does Checkout.jsx handle address forms and payment method selection?</div>
+    <div class="answer">
+      Captures user shipping address fields (full name, phone, street, city, postal code) and payment options (UPI, Credit Card, Debit Card, Cash on Delivery). Submitting the form generates a unique order number (e.g. `ORD-2026-89421`), triggers an order confirmation modal, and clears the active shopping cart state upon completion.
+    </div>
+  </div>
+
+</body>
+</html>

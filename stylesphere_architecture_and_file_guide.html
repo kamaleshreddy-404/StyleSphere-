@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>StyleSphere - Architecture Diagram & Folder Guide</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+      color: #0f172a;
+      background: #ffffff;
+      margin: 0;
+      padding: 2.5rem;
+    }
+    
+    @media print {
+      body { padding: 0; background: #ffffff; }
+      .no-print { display: none !important; }
+      a { text-decoration: none; color: #0f172a; }
+      .diagram-box, .file-card { page-break-inside: avoid; }
+    }
+    
+    .print-header {
+      background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+      color: #ffffff;
+      padding: 1.25rem 2rem;
+      border-radius: 12px;
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25);
+    }
+    
+    .btn-download {
+      background: #ffffff;
+      color: #2563eb;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-weight: 700;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    
+    h1 {
+      font-size: 2.3rem;
+      color: #0f172a;
+      border-bottom: 4px solid #2563eb;
+      padding-bottom: 0.5rem;
+      margin-top: 0;
+    }
+    
+    h2 {
+      font-size: 1.5rem;
+      color: #1e293b;
+      background: #f8fafc;
+      padding: 0.6rem 1rem;
+      border-left: 5px solid #2563eb;
+      border-radius: 4px;
+      margin-top: 2rem;
+    }
+    
+    /* Architecture Diagram Styling */
+    .diagram-box {
+      background: #f8fafc;
+      border: 2px dashed #cbd5e1;
+      border-radius: 16px;
+      padding: 2rem;
+      margin: 2rem 0;
+      text-align: center;
+    }
+
+    .diagram-grid {
+      display: grid;
+      grid-template-columns: 1fr 80px 1fr 80px 1fr;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .diagram-card {
+      background: #ffffff;
+      border: 2px solid #2563eb;
+      border-radius: 12px;
+      padding: 1.25rem;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1);
+      text-align: left;
+    }
+
+    .diagram-card-title {
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: #0f172a;
+      margin-bottom: 0.5rem;
+      border-bottom: 2px solid #eff6ff;
+      padding-bottom: 0.4rem;
+    }
+
+    .diagram-arrow {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #2563eb;
+    }
+
+    /* File Explanation Cards */
+    .file-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1.25rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+    }
+
+    .file-name {
+      font-family: monospace;
+      font-weight: 700;
+      font-size: 1rem;
+      color: #2563eb;
+      background: #eff6ff;
+      padding: 4px 10px;
+      border-radius: 6px;
+      display: inline-block;
+      margin-bottom: 0.6rem;
+      border: 1px solid #bfdbfe;
+    }
+
+    .file-desc {
+      color: #334155;
+      font-size: 0.95rem;
+    }
+
+    code {
+      background: #f1f5f9;
+      color: #2563eb;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 0.88em;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="print-header no-print">
+    <div>
+      <div style="font-size: 1.2rem; font-weight: 800;">📐 StyleSphere Folder Architecture & Main Files Guide</div>
+      <div style="font-size: 0.88rem; opacity: 0.9; margin-top: 2px;">Diagram & Detailed Main File Explanations Ready for PDF Download.</div>
+    </div>
+    <button class="btn-download" onclick="window.print()">📥 Save Diagram Guide as PDF</button>
+  </div>
+
+  <h1>📐 StyleSphere - Project Folder Integration Diagram & File Guide</h1>
+
+  <p>This document presents the <strong>Integration Diagram (IN Diagram)</strong> showing how StyleSphere's three core folders (<code>frontend/</code>, <code>backend/</code>, and <code>database/</code>) connect and interact, followed by detailed explanations of every key file in each directory.</p>
+
+  <!-- INTEGRATION DIAGRAM -->
+  <h2>1. Integration Architecture Diagram (IN Diagram)</h2>
+  
+  <div class="diagram-box">
+    <div class="diagram-grid">
+      <!-- FRONTEND -->
+      <div class="diagram-card">
+        <div class="diagram-card-title">📁 frontend/</div>
+        <div style="font-size: 0.82rem; color: #475569;">
+          <strong>React 19 SPA Layer</strong><br>
+          • 13 Pages & Components<br>
+          • Context API (Cart/Auth)<br>
+          • <code>services/api.js</code> Fetcher
+        </div>
+      </div>
+
+      <!-- ARROW 1 -->
+      <div class="diagram-arrow">⇄<br><span style="font-size: 0.7rem; color: #64748b;">HTTP REST / JSON</span></div>
+
+      <!-- BACKEND -->
+      <div class="diagram-card">
+        <div class="diagram-card-title">📁 backend/</div>
+        <div style="font-size: 0.82rem; color: #475569;">
+          <strong>Java Servlets MVC Layer</strong><br>
+          • Servlet Controllers<br>
+          • JDBC DAOs & Models<br>
+          • <code>CorsFilter.java</code>
+        </div>
+      </div>
+
+      <!-- ARROW 2 -->
+      <div class="diagram-arrow">⇄<br><span style="font-size: 0.7rem; color: #64748b;">JDBC SQL Queries</span></div>
+
+      <!-- DATABASE -->
+      <div class="diagram-card">
+        <div class="diagram-card-title">📁 database/</div>
+        <div style="font-size: 0.82rem; color: #475569;">
+          <strong>MySQL 8.0 Relational Layer</strong><br>
+          • 15 Normalized Tables<br>
+          • 100 Products Dataset<br>
+          • PK/FK & Indexes
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: DATABASE MAIN FILES -->
+  <h2>2. 📁 database/ - Database Files Explanation</h2>
+
+  <div class="file-card">
+    <div class="file-name">database/schema.sql</div>
+    <div class="file-desc">
+      <strong>Purpose:</strong> Defines the normalized MySQL relational database structure.<br>
+      <strong>Details:</strong> Creates 15 3NF normalized tables (<code>users</code>, <code>admin</code>, <code>addresses</code>, <code>brands</code>, <code>categories</code>, <code>subcategories</code>, <code>products</code>, <code>product_variants</code>, <code>cart</code>, <code>cart_items</code>, <code>wishlist</code>, <code>orders</code>, <code>order_items</code>, <code>payments</code>, <code>reviews</code>). Enforces Primary Keys, Foreign Keys, cascading rules, and performance indexes.
+    </div>
+  </div>
+
+  <div class="file-card">
+    <div class="file-name">database/seed_data.sql</div>
+    <div class="file-desc">
+      <strong>Purpose:</strong> Populates initial mock dataset into MySQL.<br>
+      <strong>Details:</strong> Inserts 10 Main Categories, 30 Subcategories, 15 Brands, 100 Products with prices, discounts, ratings, variants (sizes, colors, stock), user accounts, and reviews for demonstration.
+    </div>
+  </div>
+
+  <!-- SECTION 3: BACKEND MAIN FILES -->
+  <h2>3. 📁 backend/ - Java MVC Backend Files Explanation</h2>
+
+  <div class="file-card">
+    <div class="file-name">backend/pom.xml</div>
+    <div class="file-desc">
+      <strong>Purpose:</strong> Maven Project Object Model configuration.<br>
+      <strong>Details:</strong> Declares external dependencies: Jakarta Servlet API 6.0, MySQL Connector/J 8.3, Google Gson 2.10 (JSON parsing), jbcrypt 0.4 (password security), and configures the WAR plugin build.
+    </div>
+  </div>
+
+  <div class="file-card">
+    <div class="file-name">backend/.../util/DBConnection.java</div>
+    <div class="file-desc">
+      <strong>Purpose:</strong> JDBC Connection Factory Utility.<br>
+      <strong>Details:</strong> Loads MySQL JDBC driver dynamically into memory via <code>Class.forName("com.mysql.cj.jdbc.Driver")</code> and opens SQL Connection sessions via <code>DriverManager.getConnection(...)</code>.
+    </div>
+  </div>
+
+  <div class="file-card">
+    <div class="file-name">backend/.../filter/CorsFilter.java</div>
+    <div class="file-desc">
+      <strong>Purpose:</strong> Cross-Origin Resource Sharing Security Filter.<br>
+      <strong>Details:</strong> Uses <code>@WebFilter("/*")</code> to intercept HTTP requests/responses, attaching headers like <code>Access-Control-Allow-Origin: *</code> and handling preflight <code>OPTIONS</code> requests for React client integration.
+    </div>
+  </div>
+
+  <div class="file-card">
+    <div class="file-name">backend/.../dao/impl/ProductDAOImpl.java</div>
+    <div class="file-desc">
+      <strong>Purpose:</strong> Product Data Access Object Implementation.<br>
+      <strong>Details:</strong> Contains JDBC SQL queries using <code>PreparedStatement</code> to perform multi-criteria product filtering (category, brand, price slider, gender tag), sorting, pagination, and admin CRUD operations.
+    </div>
+  </div>
+
+  <div class="file-card">
+    <div class="file-name">backend/.../dao/impl/UserDAOImpl.java</div>
+    <div class="file-desc">
+      <strong>Purpose:</strong> User Authentication & Profile DAO.<br>
+      <strong>Details:</strong> Handles user registration, login authentication, and password updates. Secures passwords using BCrypt encryption (<code>BCrypt.hashpw(...)</code>).
+    </div>
+  </div>
+
+  <div class="file-card">
+    <div class="file-name">backend/.../servlet/ProductServlet.java</div>
+    <div class="file-desc">
+      <strong>Purpose:</strong> Product Controller REST Servlet.<br>
+      <strong>Details:</strong> Mapped to <code>@WebServlet("/api/products/*")</code>. Overrides <code>doGet()</code> to parse HTTP query parameters, call `ProductDAO`, and return JSON data to the React view using Google Gson.
+    </div>
+  </div>
+
+  <div class="file-card">
+    <div class="file-name">backend/.../servlet/AuthServlet.java</div>
+    <div class="file-desc">
+      <strong>Purpose:</strong> Authentication Controller Servlet.<br>
+      <strong>Details:</strong> Handles <code>/api/auth/login</code>, <code>/api/auth/register</code>, and <code>/api/auth/logout</code> endpoints. Manages HTTP sessions using <code>req.getSession(true)</code>.
+    </div>
+  </div>
+
+  <!-- SECTION 4: FRONTEND MAIN FILES -->
+  <h2>4. 📁 frontend/ - React.js Frontend Files Explanation</h2>
+
+  <div class="file-card">
+    <div class="file-name">frontend/src/App.jsx</div>
+    <div class="file-desc">
+      <strong>Purpose:</strong> Main Application Component & Router Configuration.<br>
+      <strong>Details:</strong> Configures 13 client routes using <code>react-router-dom</code> (`Routes`, `Route`), wraps the tree in `AuthProvider`, `CartProvider`, and `WishlistProvider`, and renders persistent `Navbar` and `Footer`.
+    </div>
+  </div>
+
+  <div class="file-card">
+    <div class="file-name">frontend/src/services/api.js</div>
+    <div class="file-desc">
+      <strong>Purpose:</strong> Network API Service Layer.<br>
+      <strong>Details:</strong> Dispatches `fetch()` API calls to Java Servlets `/api/*` endpoints. If server/database is offline, try-catch fallback filters data locally from `data/products.js`.
+    </div>
+  </div>
+
+  <div class="file-card">
+    <div class="file-name">frontend/src/context/CartContext.jsx</div>
+    <div class="file-desc">
+      <strong>Purpose:</strong> Global Cart State & Coupon Engine.<br>
+      <strong>Details:</strong> Manages item additions, size/color variant selections, quantity modifications, `localStorage` persistence, and coupon validation (`STUDENT10` applying 10% discount).
+    </div>
+  </div>
+
+  <div class="file-card">
+    <div class="file-name">frontend/src/pages/Products.jsx</div>
+    <div class="file-desc">
+      <strong>Purpose:</strong> Product Catalog Page.<br>
+      <strong>Details:</strong> Combines search, multi-criteria sidebar filters, array sorting, responsive grid, and pagination.
+    </div>
+  </div>
+
+  <div class="file-card">
+    <div class="file-name">frontend/src/pages/Checkout.jsx</div>
+    <div class="file-desc">
+      <strong>Purpose:</strong> Order Checkout Page.<br>
+      <strong>Details:</strong> Manages delivery address forms, payment gateway selection (UPI, Credit/Debit Card, COD), order summary calculations, and confirmation modals.
+    </div>
+  </div>
+
+  <div class="file-card">
+    <div class="file-name">frontend/src/pages/AdminDashboard.jsx</div>
+    <div class="file-desc">
+      <strong>Purpose:</strong> System Admin Panel.<br>
+      <strong>Details:</strong> Features sales & order metrics cards, tabbed product CRUD (Add, Edit, Delete products), category manager, and order status update controls (`PROCESSING` -> `SHIPPED` -> `DELIVERED`).
+    </div>
+  </div>
+
+</body>
+</html>
