@@ -1,6 +1,6 @@
 import React from 'react';
 import { CATEGORIES, BRANDS } from '../data/products';
-import { Filter, RotateCcw, Check } from 'lucide-react';
+import { Filter, RotateCcw } from 'lucide-react';
 
 export default function SidebarFilter({
   selectedCategory,
@@ -17,12 +17,12 @@ export default function SidebarFilter({
 }) {
   return (
     <aside style={{
-      background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '12px',
-      padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.5rem'
+      background: 'var(--card-bg)', border: '1px solid var(--border-color)', borderRadius: '12px',
+      padding: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1.5rem', transition: 'background-color 0.3s ease, border-color 0.3s ease'
     }}>
       {/* Header */}
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid #f1f5f9', paddingBottom: '0.8rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontWeight: 700, fontSize: '1rem', color: '#0f172a' }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', borderBottom: '1px solid var(--border-color)', paddingBottom: '0.8rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontWeight: 700, fontSize: '1rem', color: 'var(--dark)' }}>
           <Filter size={18} style={{ color: '#2563eb' }} /> Filters
         </div>
         <button
@@ -35,15 +35,15 @@ export default function SidebarFilter({
 
       {/* Sorting */}
       <div>
-        <label style={{ fontSize: '0.82rem', fontWeight: 700, color: '#0f172a', display: 'block', marginBottom: '0.5rem' }}>
+        <label style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--dark)', display: 'block', marginBottom: '0.5rem' }}>
           SORT BY
         </label>
         <select
           value={sortBy}
           onChange={(e) => setSortBy(e.target.value)}
           style={{
-            width: '100%', padding: '0.6rem', border: '1px solid #cbd5e1', borderRadius: '6px',
-            fontSize: '0.85rem', background: '#fff', color: '#0f172a'
+            width: '100%', padding: '0.6rem', border: '1px solid var(--border-color)', borderRadius: '6px',
+            fontSize: '0.85rem', background: 'var(--card-bg)', color: 'var(--dark)'
           }}
         >
           <option value="featured">Featured First</option>
@@ -56,7 +56,7 @@ export default function SidebarFilter({
 
       {/* Gender Filter */}
       <div>
-        <label style={{ fontSize: '0.82rem', fontWeight: 700, color: '#0f172a', display: 'block', marginBottom: '0.5rem' }}>
+        <label style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--dark)', display: 'block', marginBottom: '0.5rem' }}>
           GENDER / STYLE
         </label>
         <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
@@ -66,9 +66,9 @@ export default function SidebarFilter({
               onClick={() => setGenderFilter(g)}
               style={{
                 padding: '0.35rem 0.75rem', borderRadius: '6px', fontSize: '0.78rem', fontWeight: 600,
-                border: `1px solid ${genderFilter === g ? '#2563eb' : '#e2e8f0'}`,
-                background: genderFilter === g ? '#eff6ff' : '#ffffff',
-                color: genderFilter === g ? '#2563eb' : '#475569'
+                border: `1px solid ${genderFilter === g ? '#2563eb' : 'var(--border-color)'}`,
+                background: genderFilter === g ? 'var(--primary-light)' : 'var(--card-bg)',
+                color: genderFilter === g ? '#2563eb' : 'var(--text-main)'
               }}
             >
               {g}
@@ -79,7 +79,7 @@ export default function SidebarFilter({
 
       {/* Price Range Slider */}
       <div>
-        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.82rem', fontWeight: 700, color: '#0f172a', marginBottom: '0.5rem' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.82rem', fontWeight: 700, color: 'var(--dark)', marginBottom: '0.5rem' }}>
           <span>MAX PRICE</span>
           <span style={{ color: '#2563eb' }}>₹{maxPrice.toLocaleString()}</span>
         </div>
@@ -96,7 +96,7 @@ export default function SidebarFilter({
 
       {/* Categories */}
       <div>
-        <label style={{ fontSize: '0.82rem', fontWeight: 700, color: '#0f172a', display: 'block', marginBottom: '0.5rem' }}>
+        <label style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--dark)', display: 'block', marginBottom: '0.5rem' }}>
           CATEGORIES
         </label>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', maxHeight: '180px', overflowY: 'auto' }}>
@@ -119,7 +119,7 @@ export default function SidebarFilter({
                 onChange={() => setSelectedCategory(cat.id)}
                 style={{ accentColor: '#2563eb' }}
               />
-              <span style={{ color: selectedCategory === cat.id ? '#2563eb' : '#475569', fontWeight: selectedCategory === cat.id ? 600 : 400 }}>
+              <span style={{ color: selectedCategory === cat.id ? '#2563eb' : 'var(--text-main)', fontWeight: selectedCategory === cat.id ? 600 : 400 }}>
                 {cat.name}
               </span>
             </label>
@@ -129,7 +129,7 @@ export default function SidebarFilter({
 
       {/* Brands */}
       <div>
-        <label style={{ fontSize: '0.82rem', fontWeight: 700, color: '#0f172a', display: 'block', marginBottom: '0.5rem' }}>
+        <label style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--dark)', display: 'block', marginBottom: '0.5rem' }}>
           BRANDS
         </label>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', maxHeight: '180px', overflowY: 'auto' }}>
@@ -152,7 +152,7 @@ export default function SidebarFilter({
                 onChange={() => setSelectedBrand(brand.id)}
                 style={{ accentColor: '#2563eb' }}
               />
-              <span style={{ color: selectedBrand === brand.id ? '#2563eb' : '#475569', fontWeight: selectedBrand === brand.id ? 600 : 400 }}>
+              <span style={{ color: selectedBrand === brand.id ? '#2563eb' : 'var(--text-main)', fontWeight: selectedBrand === brand.id ? 600 : 400 }}>
                 {brand.name}
               </span>
             </label>
