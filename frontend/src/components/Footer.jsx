@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ShieldCheck, Truck, RotateCcw, Headphones, Mail } from 'lucide-react';
+import Logo from './Logo';
 
 export default function Footer() {
   return (
@@ -44,9 +45,11 @@ export default function Footer() {
         {/* Links Grid */}
         <div className="footer-grid">
           <div className="footer-brand">
-            <h3>Style<span>Sphere</span></h3>
+            <div style={{ marginBottom: '1rem' }}>
+              <Logo variant="light" size="lg" />
+            </div>
             <p>StyleSphere is a modern fashion e-commerce web platform created as a final-year student portfolio project. Inspired by industry leading platforms with original design, architecture, and full-stack implementation.</p>
-            <div style={{ display: 'flex', gap: '0.5rem', marginTop: '1rem' }}>
+            <div style={{ display: 'flex', gap: '0.5rem', marginTop: '1.25rem' }}>
               <input type="email" placeholder="Enter your email" style={{
                 padding: '0.6rem 1rem', borderRadius: '6px', border: '1px solid #334155',
                 background: '#1e293b', color: '#fff', fontSize: '0.85rem', flex: 1

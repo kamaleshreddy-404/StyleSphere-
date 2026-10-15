@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { ShoppingBag, Heart, User, Search, Menu, X, ShieldCheck, LogOut, Sun, Moon } from 'lucide-react';
+import { ShoppingBag, Heart, User, Search, ShieldCheck, LogOut } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { useWishlist } from '../context/WishlistContext';
 import { useAuth } from '../context/AuthContext';
-import { useTheme } from '../context/ThemeContext';
 import { PRODUCTS } from '../data/products';
+import Logo from './Logo';
 
 export default function Navbar() {
   const { itemCount } = useCart();
   const { count: wishlistCount } = useWishlist();
   const { user, logout, isAdmin } = useAuth();
-  const { isDark, toggleTheme } = useTheme();
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
   const navigate = useNavigate();
@@ -56,11 +55,8 @@ export default function Navbar() {
       {/* Main Navbar */}
       <nav className="navbar">
         <div className="container navbar-container">
-          {/* Logo */}
-          <Link to="/" className="logo">
-            <div className="logo-sphere">S</div>
-            <div className="logo-text">Style<span>Sphere</span></div>
-          </Link>
+          {/* Technical Online Shopping Logo */}
+          <Logo size="md" />
 
           {/* Navigation Links */}
           <ul className="nav-links">
@@ -94,8 +90,8 @@ export default function Navbar() {
             {searchResults.length > 0 && (
               <div style={{
                 position: 'absolute', top: '100%', left: 0, right: 0, marginTop: '4px',
-                background: 'var(--card-bg)', border: '1px solid var(--border-color)', borderRadius: '8px',
-                boxShadow: '0 10px 25px rgba(0,0,0,0.2)', zIndex: 20, overflow: 'hidden'
+                background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '8px',
+                boxShadow: '0 10px 25px rgba(0,0,0,0.15)', zIndex: 20, overflow: 'hidden'
               }}>
                 {searchResults.map(item => (
                   <div
@@ -107,14 +103,14 @@ export default function Navbar() {
                     }}
                     style={{
                       display: 'flex', alignItems: 'center', gap: '10px', padding: '8px 12px',
-                      cursor: 'pointer', borderBottom: '1px solid var(--border-color)', transition: 'background 0.2s'
+                      cursor: 'pointer', borderBottom: '1px solid #f1f5f9', transition: 'background 0.2s'
                     }}
-                    onMouseEnter={(e) => e.currentTarget.style.background = 'var(--primary-light)'}
-                    onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
+                    onMouseEnter={(e) => e.currentTarget.style.background = '#eff6ff'}
+                    onMouseLeave={(e) => e.currentTarget.style.background = '#ffffff'}
                   >
                     <img src={item.image} alt={item.name} style={{ width: 36, height: 36, objectFit: 'cover', borderRadius: 4 }} />
                     <div>
-                      <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--dark)' }}>{item.name}</div>
+                      <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#0f172a' }}>{item.name}</div>
                       <div style={{ fontSize: '0.75rem', color: '#2563eb' }}>₹{item.price} • {item.brand}</div>
                     </div>
                   </div>
@@ -125,16 +121,6 @@ export default function Navbar() {
 
           {/* Action Icons */}
           <div className="nav-actions">
-            {/* Theme Toggle Button */}
-            <button
-              onClick={toggleTheme}
-              className="nav-icon-btn"
-              title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
-              aria-label="Toggle Dark Mode"
-            >
-              {isDark ? <Sun size={20} color="#f59e0b" /> : <Moon size={20} color="#64748b" />}
-            </button>
-
             <Link to="/user" className="nav-icon-btn" title="Wishlist">
               <Heart size={20} />
               {wishlistCount > 0 && <span className="badge-count" style={{ background: '#ef4444' }}>{wishlistCount}</span>}
@@ -147,11 +133,11 @@ export default function Navbar() {
 
             {user ? (
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <Link to="/user" style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.88rem', fontWeight: 600, color: 'var(--dark)' }}>
+                <Link to="/user" style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.88rem', fontWeight: 600, color: '#0f172a' }}>
                   <img src={user.avatar} alt={user.name} style={{ width: 30, height: 30, borderRadius: '50%', objectFit: 'cover' }} />
                   <span>{user.name.split(' ')[0]}</span>
                 </Link>
-                <button onClick={logout} className="nav-icon-btn" title="Logout" style={{ color: 'var(--text-muted)' }}>
+                <button onClick={logout} className="nav-icon-btn" title="Logout" style={{ color: '#64748b' }}>
                   <LogOut size={18} />
                 </button>
               </div>

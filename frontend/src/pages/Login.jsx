@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { Lock, Mail, ArrowRight, AlertCircle, CheckCircle2, Sparkles } from 'lucide-react';
+import Logo from '../components/Logo';
 
 export default function Login() {
   const [email, setEmail] = useState('alex.j@example.com');
   const [password, setPassword] = useState('password123');
   const [error, setError] = useState('');
   const [demoNotice, setDemoNotice] = useState('');
+  const [selectedDemo, setSelectedDemo] = useState('customer');
   const { login } = useAuth();
   const navigate = useNavigate();
 
@@ -43,6 +45,7 @@ export default function Login() {
   };
 
   const setAdminDemo = () => {
+    setSelectedDemo('admin');
     setEmail('admin@stylesphere.com');
     setPassword('admin123');
     setError('');
@@ -50,6 +53,7 @@ export default function Login() {
   };
 
   const setCustomerDemo = () => {
+    setSelectedDemo('customer');
     setEmail('alex.j@example.com');
     setPassword('password123');
     setError('');
@@ -64,10 +68,13 @@ export default function Login() {
           padding: '2.5rem', boxShadow: 'var(--shadow-lg)', transition: 'background-color 0.3s ease, border-color 0.3s ease'
         }}>
           <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-            <h1 style={{ fontSize: '1.8rem', fontWeight: 800, color: 'var(--dark)', marginBottom: '0.4rem' }}>
+            <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.25rem' }}>
+              <Logo size="md" />
+            </div>
+            <h1 style={{ fontSize: '1.8rem', fontWeight: 800, color: '#0f172a', marginBottom: '0.4rem' }}>
               Welcome Back
             </h1>
-            <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)' }}>Sign in to your StyleSphere account</p>
+            <p style={{ fontSize: '0.9rem', color: '#64748b' }}>Sign in to your StyleSphere account</p>
           </div>
 
           {/* Quick Demo Credentials Switcher */}
@@ -82,16 +89,40 @@ export default function Login() {
               <button
                 type="button"
                 onClick={setCustomerDemo}
-                className="btn btn-outline btn-sm"
-                style={{ flex: 1, fontSize: '0.78rem', padding: '0.4rem 0.6rem' }}
+                style={{
+                  flex: 1,
+                  fontSize: '0.8rem',
+                  padding: '0.5rem 0.6rem',
+                  borderRadius: '6px',
+                  fontWeight: selectedDemo === 'customer' ? 700 : 500,
+                  backgroundColor: selectedDemo === 'customer' ? '#2563eb' : '#ffffff',
+                  color: selectedDemo === 'customer' ? '#ffffff' : '#475569',
+                  border: `1px solid ${selectedDemo === 'customer' ? '#2563eb' : '#cbd5e1'}`,
+                  boxShadow: selectedDemo === 'customer' ? '0 2px 6px rgba(37,99,235,0.25)' : 'none',
+                  cursor: 'pointer',
+                  outline: 'none',
+                  transition: 'background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease'
+                }}
               >
                 Customer Demo
               </button>
               <button
                 type="button"
                 onClick={setAdminDemo}
-                className="btn btn-primary btn-sm"
-                style={{ flex: 1, fontSize: '0.78rem', padding: '0.4rem 0.6rem' }}
+                style={{
+                  flex: 1,
+                  fontSize: '0.8rem',
+                  padding: '0.5rem 0.6rem',
+                  borderRadius: '6px',
+                  fontWeight: selectedDemo === 'admin' ? 700 : 500,
+                  backgroundColor: selectedDemo === 'admin' ? '#2563eb' : '#ffffff',
+                  color: selectedDemo === 'admin' ? '#ffffff' : '#475569',
+                  border: `1px solid ${selectedDemo === 'admin' ? '#2563eb' : '#cbd5e1'}`,
+                  boxShadow: selectedDemo === 'admin' ? '0 2px 6px rgba(37,99,255,0.25)' : 'none',
+                  cursor: 'pointer',
+                  outline: 'none',
+                  transition: 'background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease'
+                }}
               >
                 Admin Demo
               </button>
